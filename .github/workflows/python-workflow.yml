@@ -30,12 +30,12 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          flake8 ./src/api --show-source --statistics
+          flake8 api --show-source --statistics
           continue-on-error: true
 
       - name: Check Complexity
         run: |
-          flake8 ./src/api --max-complexity=10 --statistics
+          flake8 api --max-complexity=10 --statistics
           continue-on-error: true
 
       - name: Run Django tests
