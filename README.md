@@ -1,48 +1,39 @@
-# Django ToDo list
+# Python CI Pipeline with GitHub Actions
 
-This project is an advanced to-do list web application with the basic features of most web apps, such as accounts/login, API, and interactive UI. 
+# Project Overview:
 
-To complete this task, you will need:
+This project implements a CI workflow for a Python application using GitHub Actions.
+The pipeline runs tests, generates code coverage reports, checks code style and
+complexity, and uploads source code as an artifact. It is triggered on pushes
+and pull requests to the main and develop branches.
 
-- CSS | [Skeleton](http://getskeleton.com/)
-- JS  | [jQuery](https://jquery.com/)
+# Tech Stack:
 
-## Explore
+- Python (configurable via matrix or environment variable)
+- pytest (for running tests)
+- coverage (for test coverage)
+- flake8 (for linting and complexity checks)
+- GitHub Actions (CI)
 
-Try it out by installing the requirements (the following commands work only with Python 3.8 and higher due to Django 4):
+# What was done:
 
-```
-pip install -r requirements.txt
-```
+- Created python-ci job that runs:
+  - Unit tests using pytest
+  - Coverage report with coverage
+  - Code style check with flake8
+  - Code complexity check with flake8
 
-Create a database schema:
+- Coverage report is printed in the console
+- Python source code is uploaded as an artifact.
 
-```
-python manage.py migrate
-```
+- The workflow is triggered on:
+  - Push to main and develop
+  - Pull request to main
+  
+- Workflow run name includes:
+  - GitHub user who triggered the job
+  - Commit hash that triggered the workflow
 
-And then start the server (default is <http://localhost:8000>):
+# Link to the successful GitHub Actions run:
+https://github.com/konstantinou77/devops_todolist_cicd_task_2_python_ci/actions/runs/15443817526
 
-```
-python manage.py runserver
-```
-
-You can now browse the [API](http://localhost:8000/api/) or start on the [landing page](http://localhost:8000/).
-
-## Task
-
-In this task, you have to create a GitHub Actions workflow to automate testing and quality checks for this project. The workflow should adhere to the following specifications:
-
-1. Run on every push to the `main` and `develop` branches and on pull requests to the `main` branch.
-2. The run name should contain information about the user triggering the workflow.
-3. The run name should contain information about the commit hash that triggered the workflow.
-4. The run should have a `python-ci` job with steps as follows:
-    1. step that runs the tests. (Tests are included in the app.)
-    2. step that generates a coverage with `coverage`.
-    3. step that displays the coverage report in the console.
-    4. step that checks the code style. (Code style is checked with `flake8`.) This should not be a blocker for the workflow.
-    5. step that checks the complexity of the code. (Code complexity is checked with `flake8`.) This should not be a blocker to the workflow.
-    6. step that uploads Python code as an artifact.
-    7. The Python version should be controlled from the variable.
-5. Create a PR to this repository with the changes.
-6. PR workflow should be triggered and should pass all the checks.
